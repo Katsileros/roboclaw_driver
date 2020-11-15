@@ -1,6 +1,6 @@
 import threading
 
-from . roboclaw import Roboclaw
+from . roboclaw_3 import Roboclaw
 
 ERRORS = {
     # 0x0000: "Normal",
