@@ -115,13 +115,14 @@ class RoboclawControl:
 
     def driveM1M2qpps(self, m1_qpps, m2_qpps, accel, max_secs):
         with self._serial_lock:
-            return self._roboclaw.SpeedAccelDistanceM1M2(
-                self._address,
-                accel=accel,
-                speed1=m1_qpps, distance1=abs(m1_qpps * max_secs),
-                speed2=m2_qpps, distance2=abs(m2_qpps * max_secs),
-                buffer=1
-            )
+            return self._roboclaw.DutyAccelM1M2(self._address, accel1=accel, duty1=m1_qpps, accel2=accel, duty2=m2_qpps)
+            # return self._roboclaw.SpeedAccelDistanceM1M2(
+            #     self._address,
+            #     accel=accel,
+            #     speed1=m1_qpps, distance1=abs(m1_qpps * max_secs),
+            #     speed2=m2_qpps, distance2=abs(m2_qpps * max_secs),
+            #     buffer=1
+            # )
 
     def read_stats(self):
         """Read and return the monitorinng values of the Roboclaw
